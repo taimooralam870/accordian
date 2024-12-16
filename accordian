@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accordion with jQuery and Tailwind CSS</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .accordion-item {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 py-10 px-4">
+
+<section class="max-w-[1280px] mx-auto py-[30px] px-4 md:px-[20px] md:py-[50px]">
+    <div class="flex lg:flex-row flex-col lg:gap-[40px] gap-[10px]">
+        <div class="lg:w-[50%] w-full">
+            <div class="max-w-[608px] lg:mx-auto flex flex-col gap-[10px] lg:gap-[14px]">
+                <h2 class="md:text-[56px] text-black lg:text-[64px] text-start text-[24px] leading-[1.2]">
+                    We are serious about <br> vitality, ask away
+                </h2>
+                <p class="text-[12px] text-start  lg:text-[17px] leading-[1.2] text-[#757575]">
+                    Have more questions? Visit our <a class="text-black" href="">Help Center</a> or <br class="">
+                    inquire at <a class="text-black"
+                        href="mailto:customerservice@l-nutra.com">customerservice@l-nutra.com</a>
+                </p>
+            </div>
+        </div>
+        <div class="lg:w-[50%] w-full">
+            <div class="md:space-y-4">
+
+                <div class="border-b border-gray-200">
+                    <button class="accordion w-full text-left flex justify-between items-center py-4 focus:outline-none"
+                        data-target="#faq-1">
+                        <span class="text-[16px] font-medium text-black">Reviews &amp; Testimonials</span>
+                        <span class="text-2xl text-black">+</span>
+                    </button>
+                    <div id="faq-1" class="panel text-black text-gray-600 py-2 hidden" style="display: none;">
+                        Content for Reviews &amp; Testimonials.
+                    </div>
+                </div>
+
+                <div class="border-b border-gray-200">
+                    <button class="accordion w-full text-left flex justify-between items-center py-4 focus:outline-none"
+                        data-target="#faq-2">
+                        <span class="text-[16px] font-medium text-black">Nutritional Facts</span>
+                        <span class="text-2xl text-black">+</span>
+                    </button>
+                    <div id="faq-2" class="panel text-black hidden text-gray-600 py-2" style="display: none;">
+                        Content for Reviews &amp; Testimonials.
+                    </div>
+                </div>
+
+                <div class="border-b border-gray-200">
+                    <button class="accordion w-full text-left flex justify-between items-center py-4 focus:outline-none"
+                        data-target="#faq-3">
+                        <span class="text-[16px] font-medium text-black">HSA/FSA Eligible</span>
+                        <span class="text-2xl text-black">+</span>
+                    </button>
+                    <div id="faq-3" class="panel text-black hidden text-gray-600 py-2" style="display: none;">
+                        Content for Reviews &amp; Testimonials.
+                    </div>
+                </div>
+
+                <div class="border-b border-gray-200">
+                    <button class="accordion w-full text-left flex justify-between items-center py-4 focus:outline-none"
+                        data-target="#faq-4">
+                        <span class="text-[16px] font-medium text-black">FAQs</span>
+                        <span class="text-2xl text-black">+</span>
+                    </button>
+                    <div id="faq-4" class="panel text-black hidden text-gray-600 py-2" style="display: none;">
+                        Content for Reviews &amp; Testimonials.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    $(document).ready(function () {
+        // Ensure all panels are initially hidden
+        $('.panel').addClass('hidden').hide();
+
+        $('.accordion').on('click', function () {
+            const $panel = $(this).next('.panel');
+            const $icon = $(this).find('span:last-child');
+            const isHidden = $panel.hasClass('hidden');
+
+            if (isHidden) {
+                // Close all panels and reset icons
+                $('.panel').slideUp(300).addClass('hidden');
+                $('.accordion span:last-child').text('+');
+
+                // Open the clicked panel with animation
+                $panel.removeClass('hidden').slideDown(300);
+                $icon.text('-');
+            } else {
+                // If the panel is already open, just close it
+                $panel.slideUp(300, function () {
+                    $(this).addClass('hidden');
+                });
+                $icon.text('+');
+            }
+        });
+    });
+</script>
+
+</body>
+
+</html>
